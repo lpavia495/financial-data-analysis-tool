@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Result</title>
+    <style>
+        /* CSS for the button */
+        .back-button {
+            position: fixed; /* Fixed position */
+            right: 20px; /* 20 pixels from the right */
+            bottom: 20px; /* 20 pixels from the bottom */
+            padding: 10px 20px;
+            background-color: white; /* White background */
+            color: black; /* Black text */
+            border: solid black;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+            font: sans-serif;
+            font-weight: bold;
+            border-radius: 5px; /* Rounded corners */
+            transition-duration: 0.4s; /* Smooth transition */
+        }
+
+        .back-button:hover {
+            background-color: grey; /* Darker shade of grey */
+        }
+
+        /* Ensure content is scrollable if it goes behind the button */
+        body {
+            margin-bottom: 60px; /* Adjust based on button size */
+        }
+    </style>
+</head>
+<body>
+    <h1>Analysis Result for {{ symbol }}</h1>
+    <img src="data:image/png;base64,{{ imgs['close_price'] }}" alt="Close Price Plot">
+    <img src="data:image/png;base64,{{ imgs['rsi'] }}" alt="RSI Plot">
+    <img src="data:image/png;base64,{{ imgs['volatility'] }}" alt="Volatility Plot">
+    <img src="data:image/png;base64,{{ imgs['volume'] }}" alt="Volume Plot">
+    <a href="/" class="back-button">Go back</a>
+</body>
+</html>

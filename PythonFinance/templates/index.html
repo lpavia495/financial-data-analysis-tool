@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Financial Data Analysis Tool - Created by Luke Pavia</title>
+    <style>
+        #stock-list {
+            height: 600px; /* Adjust based on your preference */
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .stock-item {
+            padding: 5px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .stock-item:hover {
+            background-color: #f4f4f4;
+        }
+        #search-box {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 300px; /* Adjust as needed */
+            font-size: 16px; /* Adjust as needed */
+        }
+    </style>
+    <script>
+        function filterStocks() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('search-box');
+            filter = input.value.toUpperCase();
+            div = document.getElementById("stock-list");
+            a = div.getElementsByTagName('a');
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Financial Data Analysis Tool - Created by Luke Pavia</h1>
+    <input type="text" id="search-box" onkeyup="filterStocks()" placeholder="Search for stocks...">
+    <div id="stock-list">
+        {% for symbol in symbols %}
+        <a href="javascript:void(0);" onclick="document.getElementById('selected-symbol').value='{{ symbol }}'; document.getElementById('symbol-form').submit();" class="stock-item">{{ symbol }}</a>
+        {% endfor %}
+    </div>
+    <form action="/analyze" method="post" id="symbol-form">
+        <input type="hidden" id="selected-symbol" name="symbol">
+    </form>
+
+    <p>
+        Created by Luke Pavia as a useful tool to improve computer science skills and financial knowledge 
+        using Python, Flask, Matlab, HTML, CSS, and javascript! Search for a stock and select it to view stock
+        prices, 20-Day moving average, RSI, Volume, and Volatility! View the README for instructions of how to 
+        download and use
+    </p>
+</body>
+</html>
